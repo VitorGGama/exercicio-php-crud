@@ -13,7 +13,7 @@
     		
     <p>Utilize o formulário abaixo para cadastrar um novo aluno.</p>
 
-	<form action="#" method="post">
+	<form action="nome" method="post">
 	    <p><label for="nome">Nome:</label>
 	    <input type="text" id="nome" required></p>
         
