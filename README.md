@@ -42,11 +42,12 @@
 CREATE DATABASE crud_escola_vitorgama CHARACTER SET utf8mb4;
 
 
-CREATE TABLE crud_escola_vitorgama(
+CREATE TABLE alunos(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(30) NOT NULL,
     nota1 DECIMAL(4,2) NOT NULL,
     nota2 DECIMAL(4,2) NOT NULL
 );
+
 
 ```
