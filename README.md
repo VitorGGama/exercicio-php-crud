@@ -37,3 +37,16 @@
 ## DESAFIO TURBINADO 🔥💥💯
 - Em **atualizar.php**, usando `JavaScript`, programe recursos que permitam atualizar e exibir **em tempo real** os campos de `média` e `situação`. A ideia é que, no momento em que o usuário alterar as notas, ao mesmo tempo os campos `média` e `situação` mostrem os resultados de acordo com os novos valores.
 
+```sql
+
+CREATE DATABASE crud_escola_vitorgama CHARACTER SET utf8mb4;
+
+
+CREATE TABLE crud_escola_vitorgama(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(30) NOT NULL,
+    nota1 DECIMAL(4,2) NOT NULL,
+    nota2 DECIMAL(4,2) NOT NULL
+);
+
+```
