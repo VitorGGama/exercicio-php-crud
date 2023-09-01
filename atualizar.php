@@ -38,7 +38,7 @@
 	        <input type="text" name="situacao" id="situacao" readonly disabled>
         </p>
 	    
-        <button name="atualizar-dados">Atualizar dados do aluno</button>
+        <button type="submit" name="atualizar-dados">Atualizar dados do aluno</button>
 	</form>    
     
     <hr>

@@ -1,6 +1,9 @@
 <?php
-if (isset($_POST['inserir'])) {
-	require_once "../src/funcoes-alunos.php";
+if (isset($_POST['cadastrar'])) {
+	require_once "src/funcoes-alunos.php";
+
+	
+
 
 	$nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
 	$nota1 = filter_input(INPUT_POST, "nota1", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
@@ -27,50 +30,34 @@ if (isset($_POST['inserir'])) {
 		<h1 class="mt-5">Cadastrar um novo aluno</h1>
 		<hr>
 
-		<p>Utilize o formulário abaixo para cadastrar um novo aluno.</p>
+		
 
-		<form action="nome" method="post">
+		<form action="#" method="post">
 			<div class="mb-3">
 				<label for="nome" class="form-label">Nome:</label>
-				<input type="text" id="nome" class="form-control" required>
+				<input type="text" id="nome" name="nome" class="form-control" required>
 			</div>
 
 			<div class="mb-3">
 				<label for="nota1" class="form-label">Primeira nota:</label>
-				<input type="number" id="nota1" class="form-control" step="0.01" min="0.00" max="10.00" required>
+				<input type="number" id="nota1" name="nota1" class="form-control" step="0.01" min="0.00" max="10.00" required>
 			</div>
 
 			<div class="mb-3">
 				<label for="nota2" class="form-label">Segunda nota:</label>
-				<input type="number" id="nota2" class="form-control" step="0.01" min="0.00" max="10.00" required>
-
-				<option value=""></option>
-				<?php foreach ($listaDeAlunos as $aluno) { ?>
-					<option value="<?= $aluno['id'] ?>"><?= $aluno['nome'] ?></option>
+				<input type="number" id="nota2" name="nota2" class="form-control" step="0.01" min="0.00" max="10.00" required>
 
 
-
-				<?php
-				}
-				?>
-
-
-
-
+				
 			</div>
-
-
-
-
-
-			<button type="submit" class="btn btn-primary">Cadastrar aluno</button>
+			<button type="submit" class="btn btn-primary" name="cadastrar">Cadastrar aluno</button>
 		</form>
 
 		<hr>
 		<p><a href="index.php">Voltar ao início</a></p>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
 </body>
 
 </html>
