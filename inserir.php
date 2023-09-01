@@ -1,34 +1,76 @@
+<?php
+if (isset($_POST['inserir'])) {
+	require_once "../src/funcoes-alunos.php";
+
+	$nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
+	$nota1 = filter_input(INPUT_POST, "nota1", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+	$nota2 = filter_input(INPUT_POST, "nota2", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+	inserirAluno($conexao, $nome, $nota1, $nota2);
+
+	header("location:visualizar.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cadastrar um novo aluno - Exercício CRUD com PHP e MySQL</title>
-<link href="css/style.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cadastrar um novo aluno - Exercício CRUD com PHP e MySQL</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-<div class="container">
-	<h1>Cadastrar um novo aluno </h1>
-    <hr>
-    		
-    <p>Utilize o formulário abaixo para cadastrar um novo aluno.</p>
+	<div class="container">
+		<h1 class="mt-5">Cadastrar um novo aluno</h1>
+		<hr>
 
-	<form action="nome" method="post">
-	    <p><label for="nome">Nome:</label>
-	    <input type="text" id="nome" required></p>
-        
-      <p><label for="primeira">Primeira nota:</label>
-	    <input type="number" id="primeira" step="0.01" min="0.00" max="10.00" required></p>
-	    
-	    <p><label for="segunda">Segunda nota:</label>
-	    <input type="number" id="segunda" step="0.01" min="0.00" max="10.00" required></p>
-	    
-      <button>Cadastrar aluno</button>
-	</form>
+		<p>Utilize o formulário abaixo para cadastrar um novo aluno.</p>
 
-    <hr>
-    <p><a href="index.php">Voltar ao início</a></p>
-</div>
+		<form action="nome" method="post">
+			<div class="mb-3">
+				<label for="nome" class="form-label">Nome:</label>
+				<input type="text" id="nome" class="form-control" required>
+			</div>
 
+			<div class="mb-3">
+				<label for="nota1" class="form-label">Primeira nota:</label>
+				<input type="number" id="nota1" class="form-control" step="0.01" min="0.00" max="10.00" required>
+			</div>
+
+			<div class="mb-3">
+				<label for="nota2" class="form-label">Segunda nota:</label>
+				<input type="number" id="nota2" class="form-control" step="0.01" min="0.00" max="10.00" required>
+
+				<option value=""></option>
+				<?php foreach ($listaDeAlunos as $aluno) { ?>
+					<option value="<?= $aluno['id'] ?>"><?= $aluno['nome'] ?></option>
+
+
+
+				<?php
+				}
+				?>
+
+
+
+
+			</div>
+
+
+
+
+
+			<button type="submit" class="btn btn-primary">Cadastrar aluno</button>
+		</form>
+
+		<hr>
+		<p><a href="index.php">Voltar ao início</a></p>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
