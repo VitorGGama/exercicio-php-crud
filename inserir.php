@@ -1,21 +1,14 @@
 <?php
-require_once "src/funcoes-alunos.php";
-
-$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
-$aluno = lerUmAluno($conexao, $id);
+require_once "src/funcoes-alunos.php"; 
 
 
-if (isset($_POST['inserir'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
     $nota1 = filter_input(INPUT_POST, "nota1", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $nota2 = filter_input(INPUT_POST, "nota2", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $nota2 = filter_input(INPUT_POST, "nota2", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION); 
 
-	// Na página inserir.php, programe os recursos necessários para fazer INSERT no banco	
-	atualizarAluno(
-		$conexao, $id, $nome, $nota1, $nota2 );
-
-	//voltar para pagina visualizar assim que inserir o aluno
-	header("location:visualizar.php");
+    inserirAluno($conexao, $nome, $nota1, $nota2);    
+    header("Location: visualizar.php");
 }
 ?>
 
