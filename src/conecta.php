@@ -1,7 +1,4 @@
 <?php 
-// conecta.php
-/*Script de conexão ao servidor de banco de dados */
-//Parâmetros 
 
 $servidor = "localhost";
 $usuario = "root";

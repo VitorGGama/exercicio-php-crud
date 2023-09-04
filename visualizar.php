@@ -1,8 +1,9 @@
 <?php
 require_once "src/funcoes-alunos.php";
-require_once "calcular-media.php";
+require_once "src/funcoes-utilitarias.php";
 
-$listaDeAlunos = lerAlunos($conexao);
+
+$alunos = lerAlunos($conexao);
 
 ?>
 
@@ -13,50 +14,53 @@ $listaDeAlunos = lerAlunos($conexao);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de alunos - Exercício CRUD com PHP e MySQL</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="mt-4">Lista de alunos</h1>
+        <h1>Lista de alunos</h1>
         <hr>
-        <p><a href="inserir.php" class="btn btn-primary">Inserir novo aluno</a></p>
+        <p><a href="inserir.php">Inserir novo aluno</a></p>
 
-        <table class="table table-bordered">
-            <thead class="thead-dark">
+
+
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Nota1</th>
+                <th>Nota2</th>
+                <th>Média</th>
+                <th>Situação</th>
+                <th>Operações</th>
+            </tr>
+            <?php foreach ($alunos as $aluno) {
+                $media = calcularMedia($aluno['nota1'], $aluno['nota2']);
+                ?>
                 <tr>
-                    <th>Aluno</th>
-                    <th>Nota 1</th>
-                    <th>Nota 2</th>
-                    <th>Média</th>
-                    <th>Situação</th>
-                    <th>Operações</th>
+                    <td><?=$aluno['nome']?></td>
+                    <td><?=$aluno['nota1']?></td>
+                    <td><?=$aluno['nota2']?></td>
+                    <td><?= $media ?></td>
+                    <td><?=situacaoAluno($media)?></td>
+                    <td><a href="atualizar.php">Atualizar | <a href="excluir.php">Excluir</a></a> </td>
+
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($listaDeAlunos as $aluno) { ?>
-                    <tr>
-                        <td><?= $aluno["nome"] ?></td>
-                        <td><?= $aluno["nota1"] ?></td>
-                        <td><?= $aluno["nota2"] ?></td>
-                        <?php
-                        $media = calcularMedia($aluno["nota1"], $aluno["nota2"]);
-                        ?>
-                        <td><?= $media['media'] ?></td>
-                        <td><?= $media >= 7 ? 'Aprovado' : 'Reprovado' ?></td>
-                        <td>
-                            <a href="atualizar.php" class="btn btn-warning btn-sm">Atualizar</a>
-                            <a href="excluir.php" class="btn btn-danger btn-sm">Excluir</a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
+
+            <?php } ?>
+
         </table>
 
-        <p><a href="index.php" class="btn btn-secondary">Voltar ao início</a></p>
+        <!-- Aqui você deverá criar o HTML que quiser e o PHP necessários
+para exibir a relação de alunos existentes no banco de dados.
+
+Obs.: não se esqueça de criar também os links dinâmicos para
+as páginas de atualização e exclusão. -->
+
+
+        <p><a href="index.php">Voltar ao início</a></p>
     </div>
+
 </body>
 
 </html>
