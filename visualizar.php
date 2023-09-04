@@ -45,7 +45,8 @@ $alunos = lerAlunos($conexao);
                         <td><?= situacaoAluno($media) ?></td>
                         <td>
                             <a class="btn btn-info" href="atualizar.php?id=<?= $aluno['id'] ?>">Atualizar</a>
-                            <a class="btn btn-danger" href="excluir.php?id=<?= $aluno['id'] ?>">Excluir</a>
+                            <a class="btn btn-danger excluir" href="excluir.php?id=<?= $aluno['id'] ?>" data-nome="<?= $aluno['nome'] ?>">Excluir</a>
+
                         </td>
                     </tr>
                 <?php } ?>
@@ -55,6 +56,11 @@ $alunos = lerAlunos($conexao);
         <p><a href="index.php">Voltar ao início</a></p>
     </div>
 
+    <script src="src/confirma-exclusao.js"></script>
+
+
 </body>
 
 </html>
+
+

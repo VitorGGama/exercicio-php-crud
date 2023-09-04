@@ -49,7 +49,7 @@ function lerUmAluno(
     int $id,
     
     ):array {
-    $sql = "SELECT * FROM alunos WHERE id = :id";
+    $sql = "SELECT * , ROUND((nota1 + nota2)/2 , 2) as media  FROM alunos WHERE id = :id";
     try {
         $consulta = $conexao->prepare($sql);
         $consulta->bindValue(":id", $id, PDO::PARAM_INT);    
@@ -79,25 +79,20 @@ function lerUmAluno(
 
 
  // Início atualizarAluno
-  function atualizarAluno(
-    PDO $conexao,
-    int $id,
-    string $nome, 
-    int $primeira, 
-    int $segunda):void {
+  function atualizarAluno( PDO $conexao, int $id, string $nome,  int $nota1,  int $nota2):void {
 
     $sql = "UPDATE alunos SET
         nome = :nome,
-        primeira = :primeira,
-        segunda = :segunda     
+        nota1 = :nota1,
+        nota2 = :nota2     
         WHERE id = :id";
 
     try {        
         $consulta = $conexao->prepare($sql);
         $consulta->bindValue(":id", $id, PDO::PARAM_INT);
         $consulta->bindValue(":nome", $nome, PDO::PARAM_STR);
-        $consulta->bindValue(":primeira", $primeira, PDO::PARAM_STR);
-        $consulta->bindValue(":segunda", $segunda, PDO::PARAM_STR);             
+        $consulta->bindValue(":nota1", $nota1, PDO::PARAM_STR);
+        $consulta->bindValue(":nota2", $nota2, PDO::PARAM_STR);             
        
         $consulta->execute();
     } catch (Exception $erro) {
