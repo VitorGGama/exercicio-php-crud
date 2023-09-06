@@ -69,7 +69,6 @@ header("Location: visualizar.php");
 
 </div>
 
-
-
+<script src="src/atualiza-campo.js"></script>
 </body>
 </html>

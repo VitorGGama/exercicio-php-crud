@@ -62,7 +62,8 @@ $alunos = lerAlunos($conexao);
 
 
 </body>
-
+<script>src="js</script>
 </html>
+
 
 
